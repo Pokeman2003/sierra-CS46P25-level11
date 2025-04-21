@@ -45,6 +45,8 @@ int main(int argc, char *argv[])
     // If you find it, display the password and the hash.
     // Keep track of how many hashes were found.
     while (fgets(inputStr, PASS_LEN+1, passwords)) {
+        if (hashCount == size)  // There are no more passwords to crack, we can end early.
+            break;              // Mostly for rockyou3m to actually feel slightly more performant.
         char *hash = malloc(HASH_LEN * (sizeof(char)));
         char *match;
         int strLength = strlen(inputStr) - 1;
